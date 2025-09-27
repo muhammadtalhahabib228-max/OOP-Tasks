@@ -1,0 +1,48 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Stock {
+private:
+    string tickerSymbol;
+    string companyName;
+    double currentPrice;
+    int quantityOwned;
+
+public:
+    Stock(string symbol, string name, double price, int qty) {
+        tickerSymbol = symbol;
+        companyName = name;
+        currentPrice = price;
+        quantityOwned = qty;
+    }
+
+    Stock(const Stock &s) {
+        tickerSymbol = s.tickerSymbol;
+        companyName = s.companyName;
+        currentPrice = s.currentPrice;
+        quantityOwned = s.quantityOwned;
+    }
+
+    string getTickerSymbol() { return tickerSymbol; }
+    string getCompanyName() { return companyName; }
+    double getCurrentPrice() { return currentPrice; }
+    int getQuantityOwned() { return quantityOwned; }
+
+    void setCurrentPrice(double price) { currentPrice = price; }
+    void setQuantityOwned(int qty) { quantityOwned = qty; }
+
+    double calculateTotalValue() {
+        return currentPrice * quantityOwned;
+    }
+};
+
+int main() {
+    Stock s1("AAPL", "Apple Inc.", 195.5, 19);
+    cout << "Total Value of " << s1.getTickerSymbol() << ": $" << s1.calculateTotalValue() << endl;
+
+    Stock s2 = s1;
+    cout << "Copied Stock Value: $" << s2.calculateTotalValue() << endl;
+
+    return 0;
+}

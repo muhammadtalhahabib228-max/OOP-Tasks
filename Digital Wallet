@@ -1,0 +1,58 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Wallet {
+private:
+    int walletID;
+    string ownerName;
+    double balance;
+
+public:
+    Wallet(int id, string name, double bal) {
+        walletID = id;
+        ownerName = name;
+        balance = bal;
+    }
+
+    Wallet(const Wallet &w) {
+        walletID = w.walletID;
+        ownerName = w.ownerName;
+        balance = w.balance;
+    }
+
+    int getWalletID() { return walletID; }
+    string getOwnerName() { return ownerName; }
+    double getBalance() { return balance; }
+
+    void setOwnerName(string name) { ownerName = name; }
+
+    void addFunds(double amount) {
+        balance += amount;
+    }
+
+    void withdrawFunds(double amount) {
+        if (amount <= balance)
+            balance -= amount;
+        else
+            cout << "Insufficient funds!" << endl;
+    }
+};
+
+int main() {
+    Wallet w1(101, "Talha", 2500);
+    w1.addFunds(1000);
+    w1.withdrawFunds(2000);
+    cout<<"24k-5565, M. Talha Habib"<<endl;
+
+    cout << "Wallet Owner: " << w1.getOwnerName() << endl;
+    cout << "Balance: " << w1.getBalance() << endl;
+
+    Wallet w2 = w1;
+	cout << "Wallet ID: " << w2.getWalletID() 
+	 << ", Owner: " << w2.getOwnerName() 
+     << ", Balance: " << w2.getBalance() << endl;
+
+
+    return 0;
+}

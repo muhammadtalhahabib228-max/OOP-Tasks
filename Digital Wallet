@@ -43,7 +43,6 @@ int main() {
     Wallet w1(101, "Talha", 2500);
     w1.addFunds(1000);
     w1.withdrawFunds(2000);
-    cout<<"24k-5565, M. Talha Habib"<<endl;
 
     cout << "Wallet Owner: " << w1.getOwnerName() << endl;
     cout << "Balance: " << w1.getBalance() << endl;

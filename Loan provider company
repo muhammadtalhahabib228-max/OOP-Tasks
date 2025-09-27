@@ -1,0 +1,56 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+class Loan {
+private:
+    int loanID;
+    string borrowerName;
+    double loanAmount;
+    double interestRate;
+
+public:
+    Loan(int id, string name, double amount, double rate) {
+        loanID = id;
+        borrowerName = name;
+        loanAmount = amount;
+        interestRate = rate;
+    }
+
+    Loan(const Loan &l) {
+        loanID = l.loanID;
+        borrowerName = l.borrowerName;
+        loanAmount = l.loanAmount;
+        interestRate = l.interestRate;
+    }
+
+    int getLoanID() { return loanID; }
+    string getBorrowerName() { return borrowerName; }
+    double getLoanAmount() { return loanAmount; }
+    double getInterestRate() { return interestRate; }
+
+    void setBorrowerName(string name) {
+    	borrowerName = name;
+	}
+    void setLoanAmount(double amount) {
+    	loanAmount = amount;
+	}
+    void setInterestRate(double rate) {
+    	interestRate = rate;
+	}
+
+    double calculateTotalRepayment() {
+        return loanAmount + (loanAmount * interestRate / 100);
+    }
+};
+
+int main() {
+    Loan l1(201, "Talha", 100000, 10);
+    cout << "Borrower: " << l1.getBorrowerName() << endl;
+    cout << "Total Repayment: " << l1.calculateTotalRepayment() << endl;
+
+    Loan l2 = l1;
+    cout << "Copied Loan Repayment: " << l2.calculateTotalRepayment() << endl;
+
+    return 0;
+}
